@@ -10,7 +10,7 @@ from pysnmp.entity.rfc3413.oneliner import cmdgen
 def snmp_binds(switch, config, oid_var):
     """Returns a single variable list for requested OID."""
     try:
-        auth = cmdgen.CommunityData(config["ini"][0])
+        auth = cmdgen.CommunityData(config["comm_string"])
         cmd = cmdgen.CommandGenerator()
         error_indication, error_status, error_index, varbinds = cmd.getCmd(
             auth,
@@ -32,11 +32,13 @@ def snmp_binds(switch, config, oid_var):
 
 
 
+
+
 def snmp_table(switch, config, oid_var):
     """Returns entire table for requested OID."""
 
     try:
-        auth = cmdgen.CommunityData(config["ini"][0])
+        auth = cmdgen.CommunityData(config["comm_string"])
         cmd = cmdgen.CommandGenerator()
         error_indication, error_status, error_index, vartable = cmd.nextCmd(
             auth,
